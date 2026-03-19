@@ -490,7 +490,7 @@ class MoeMailMailbox(BaseMailbox):
                     mid = str(msg.get("id", ""))
                     if not mid or mid in seen: continue
                     seen.add(mid)
-                    body = str(msg.get("content") or msg.get("text") or msg.get("body") or "") + " " + str(msg.get("subject") or "")
+                    body = str(msg.get("content") or msg.get("text") or msg.get("body") or msg.get("html") or "") + " " + str(msg.get("subject") or "")
                     body = re.sub(r'[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}', '', body)
                     m = re.search(r'(?<!#)(?<!\d)(\d{6})(?!\d)', body)
                     if m: return m.group(1)

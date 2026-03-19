@@ -238,7 +238,7 @@ function ActionMenu({ acc, onDetail, onDelete }: { acc: any; onDetail: () => voi
                         setRunning(null)
                         if (!r.ok) { setToast({ type: 'error', text: r.error || '操作失败' }); return }
                         const data = r.data || {}
-                        if (data.url || data.checkout_url) { window.open(data.url || data.checkout_url, '_blank') }
+                        if (data.url || data.checkout_url || data.cashier_url) { window.open(data.url || data.checkout_url || data.cashier_url, '_blank') }
                         else { setToast({ type: 'success', text: data.message || '操作成功' }) }
                       }).catch(() => { setRunning(null); setToast({ type: 'error', text: '请求失败' }) })
                   }}

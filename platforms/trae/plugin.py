@@ -57,6 +57,7 @@ class TraePlatform(BasePlatform):
         return [
             {"id": "switch_account", "label": "切换到桌面应用", "params": []},
             {"id": "get_user_info", "label": "获取用户信息", "params": []},
+            {"id": "get_cashier_url", "label": "获取升级链接", "params": []},
         ]
 
     def execute_action(self, action_id: str, account: Account, params: dict) -> dict:
@@ -96,4 +97,18 @@ class TraePlatform(BasePlatform):
                 return {"ok": True, "data": user_info}
             return {"ok": False, "error": "获取用户信息失败"}
         
+        elif action_id == "get_cashier_url":
+            from platforms.trae.core import TraeRegister
+            with self._make_executor() as ex:
+                reg = TraeRegister(executor=ex)
+                # 重新登录刷新 session，再获取新 token 和 cashier_url
+                reg.step4_trae_login()
+                token = reg.step5_get_token()
+                if not token:
+                    token = account.token
+                cashier_url = reg.step7_create_order(token)
+            if not cashier_url:
+                return {"ok": False, "error": "获取升级链接失败，token 可能已过期，请重新注册"}
+            return {"ok": True, "data": {"cashier_url": cashier_url, "message": "请在浏览器中打开升级链接完成 Pro 订阅"}}
+
         raise NotImplementedError(f"未知操作: {action_id}")

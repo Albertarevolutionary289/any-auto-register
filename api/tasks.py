@@ -109,6 +109,11 @@ def _run_register(task_id: str, req: RegisterTaskRequest):
                 if _proxy: proxy_pool.report_success(_proxy)
                 _log(task_id, f"✓ 注册成功: {account.email}")
                 _auto_upload_cpa(task_id, account)
+                # 若有 cashier_url，打印并记录到任务结果
+                cashier_url = (account.extra or {}).get("cashier_url", "")
+                if cashier_url:
+                    _log(task_id, f"  [升级链接] {cashier_url}")
+                    _tasks[task_id].setdefault("cashier_urls", []).append(cashier_url)
                 return True
             except Exception as e:
                 if _proxy: proxy_pool.report_fail(_proxy)

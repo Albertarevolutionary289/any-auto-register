@@ -57,6 +57,10 @@ export default function Register() {
       if (t.status === 'done' || t.status === 'failed') {
         clearInterval(interval)
         setPolling(false)
+        // 自动打开 cashier_url（Trae Pro 升级链接）
+        if (t.cashier_urls && t.cashier_urls.length > 0) {
+          t.cashier_urls.forEach((url: string) => window.open(url, '_blank'))
+        }
       }
     }, 2000)
   }
