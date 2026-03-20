@@ -33,14 +33,14 @@ jobs:
       - name: Build Python backend
         run: |
           pip install pyinstaller
-          pyinstaller --onefile --name backend \
+          pyinstaller --onedir --name backend \
             --add-data "platforms:platforms" \
             --add-data "core:core" \
             --add-data "api:api" \
             --add-data "static:static" \
             main.py
           mkdir -p electron/backend
-          cp dist/backend electron/backend/
+          cp -r dist/backend electron/backend/
 
       - name: Build Electron (macOS)
         run: |
@@ -84,14 +84,14 @@ jobs:
       - name: Build Python backend
         run: |
           pip install pyinstaller
-          pyinstaller --onefile --name backend `
+          pyinstaller --onedir --name backend `
             --add-data "platforms;platforms" `
             --add-data "core;core" `
             --add-data "api;api" `
             --add-data "static;static" `
             main.py
           New-Item -ItemType Directory -Force -Path electron/backend
-          Copy-Item dist/backend.exe electron/backend/
+          Copy-Item -Recurse dist/backend electron/backend/
         shell: pwsh
 
       - name: Build Electron (Windows)

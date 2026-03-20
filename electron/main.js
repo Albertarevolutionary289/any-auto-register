@@ -15,7 +15,7 @@ function getBackendPath() {
   }
   // 生产模式：PyInstaller 打包的可执行文件放在 resources/backend/
   const ext = process.platform === 'win32' ? '.exe' : ''
-  return path.join(process.resourcesPath, 'backend', `backend${ext}`)
+  return path.join(process.resourcesPath, 'backend', 'backend', `backend${ext}`)
 }
 
 function startBackend() {
@@ -28,7 +28,7 @@ function startBackend() {
   console.log('[backend] 启动:', backendPath)
 
   backendProcess = spawn(backendPath, [], {
-    cwd: path.join(process.resourcesPath, 'backend'),
+    cwd: path.join(process.resourcesPath, 'backend', 'backend'),
     env: { ...process.env, PORT: String(PORT) },
     stdio: ['ignore', 'pipe', 'pipe'],
   })
